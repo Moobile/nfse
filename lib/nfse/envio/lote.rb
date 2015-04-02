@@ -19,16 +19,20 @@ module Nfse
       attribute :numero, Integer, default: 1
       attribute :inscricao_municipal, String
 
+      attribute :render_rps, String, default: :default_render_rps
+      attribute :valor_servicos, Integer, default: :default_valor_servicos
+      attribute :qtd_rps, Integer, default: :default_qtd_rps
+
       def initialize(attributes = nil)
         attributes = JSON.parse(attributes) if attributes.is_a?(String)
         super(attributes)
       end
 
-      def qtd_rps
+      def default_qtd_rps
         rps.size
       end
 
-      def valor_servicos
+      def default_valor_servicos
         rps.reduce(0) do |total,obj|
           total += obj.valor_servico
         end
@@ -48,7 +52,6 @@ module Nfse
         rps.last.data_emissao.strftime('%Y-%m-%d')
       end
 
-      attribute :render_rps, String, default: :default_render_rps
       def default_render_rps
         rps.map(&:render).join('')
       end

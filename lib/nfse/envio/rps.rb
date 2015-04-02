@@ -70,13 +70,15 @@ module Nfse
         Digest::SHA1.hexdigest(raw_signature)
       end
 
+      attribute :valor_deducao, Integer, default: :default_valor_deducao
       def valor_deducao
         deducoes.reduce(0) do |total,deducao|
           total += deducao.valor
         end
       end
 
-      def valor_servico
+      attribute :valor_servico, Integer, default: :default_valor_servico
+      def default_valor_servico
         itens.reduce(0) do |total,item|
           total += item.valor_total
         end
