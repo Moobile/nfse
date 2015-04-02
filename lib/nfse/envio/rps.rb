@@ -58,11 +58,13 @@ module Nfse
       attribute :desconto_incondicionado, Float, default: 0.0
       attribute :desconto_condicionado, Float, default: 0.0
 
-      def formatted_data_emissao
+      attribute :formatted_data_emissao, Integer, default: :default_formatted_data_emissao
+      def default_formatted_data_emissao
         data_emissao.strftime('%Y-%m-%dT%H:%M:%S')
       end
 
-      def formatted_data_nfse_substituida
+      attribute :formatted_data_nfse_substituida, Integer, default: :default_formatted_data_nfse_substituida
+      def default_formatted_data_nfse_substituida
         data_nfse_substituida.strftime('%Y-%m-%d')
       end
 
@@ -97,7 +99,8 @@ module Nfse
       end
 
       # Attributes default values
-      def default_operacao
+      attribute :default_operacao, Integer, default: :default_operacao_method
+      def default_operacao_method
         '1' if Nfse::Base.prefeitura == :rio_de_janeiro
       end
 
