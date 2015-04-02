@@ -48,11 +48,11 @@ module Nfse
         rps.last.data_emissao.strftime('%Y-%m-%d')
       end
 
-      def render_rps
-        rps.reduce('') do |xml,obj|
-          xml << obj.render
-        end
+      attribute :render_rps, String, default: :default_render_rps
+      def default_render_rps
+        rps.map(&:render).join('')
       end
+
     end
   end
 end
