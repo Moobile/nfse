@@ -21,7 +21,7 @@ module Nfse
       attribute :telefone, String
 
       # Rio de janeiro
-      attribute :cpf, String
+      attribute :cpf, String, default: :default_cpf
       attribute :uf, String
 
 
@@ -39,6 +39,11 @@ module Nfse
       def formatted_cnpj
         return cnpj if cnpj == default_cnpj
         cnpj.rjust(14, '0')
+      end
+
+      def default_cpf
+        @cpf.gsub(".", "")
+        @cpf.gsub("-", "")
       end
 
       def formatted_cep
