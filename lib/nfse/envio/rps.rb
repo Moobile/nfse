@@ -60,12 +60,12 @@ module Nfse
 
       attribute :formatted_data_emissao, Integer, default: :default_formatted_data_emissao
       def default_formatted_data_emissao
-        data_emissao.strftime('%Y-%m-%dT%H:%M:%S')
+        data_emissao.strftime('%Y-%m-%dT%H:%M:%S') if data_emissao
       end
 
       attribute :formatted_data_nfse_substituida, Integer, default: :default_formatted_data_nfse_substituida
       def default_formatted_data_nfse_substituida
-        data_nfse_substituida.strftime('%Y-%m-%d')
+        data_nfse_substituida.strftime('%Y-%m-%d') if data_nfse_substituida
       end
 
       def assinatura
