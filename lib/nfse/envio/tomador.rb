@@ -5,6 +5,7 @@ module Nfse
 
       attribute :inscricao_municipal, String
       attribute :cnpj, String
+      attribute :cnpj_formated, String, default: :format_cnpj
       attribute :razao_social, String
       attribute :doc_estrangeiro, String
       attribute :tipo_logradouro, String
@@ -21,7 +22,8 @@ module Nfse
       attribute :telefone, String
 
       # Rio de janeiro
-      attribute :cpf, String, default: :default_cpf
+      attribute :cpf, String
+      attribute :cpf_formated, String, default: :format_cpf
       attribute :uf, String
 
 
@@ -36,21 +38,24 @@ module Nfse
         [@telefone, @email].uniq != [nil]
       end
 
-      def formatted_cnpj
-        return cnpj if cnpj == default_cnpj
-        cnpj.rjust(14, '0')
+      # def formatted_cnpj
+      #   return cnpj if cnpj == default_cnpj
+      #   cnpj.rjust(14, '0')
+      # end
+
+      def format_cnpj
+        formated = cnpj.gsub(/(\.|\-|\/)/, "") if cnpj
+        formated
       end
 
-      def default_cpf
-        @cpf.gsub(".", "")
-        @cpf.gsub("-", "")
+      def format_cpf
+        formated = cpf.gsub(/(\.|\-)/, "") if cpf
+        formated
       end
 
       def formatted_cep
         cep.ljust(8, '0') unless cep.nil?
       end
-
-     
     end
   end
 end

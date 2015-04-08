@@ -32,17 +32,17 @@
 			<CodigoMunicipio>{{cod_municipio_prestacao}}</CodigoMunicipio>
 		</Servico>
 		<Prestador>
-			<Cnpj>{{prestador.cnpj}}</Cnpj>
+			<Cnpj>{{prestador.cnpj_formated}}</Cnpj>
 			<InscricaoMunicipal>{{prestador.inscricao_municipal}}</InscricaoMunicipal>
 		</Prestador>
 		<Tomador>
 			<IdentificacaoTomador>
 				<CpfCnpj>
 				  {{#tomador.cpf}}
-  				<Cpf>{{tomador.cpf}}</Cpf>
+  				<Cpf>{{tomador.cpf_formated}}</Cpf>
   				{{/tomador.cpf}}
   				{{#tomador.cnpj}}
-  				<Cnpj>{{tomador.cnpj}}</Cnpj>
+  				<Cnpj>{{tomador.cnpj_formated}}</Cnpj>
   				{{/tomador.cnpj}}
 				</CpfCnpj>
 			</IdentificacaoTomador>

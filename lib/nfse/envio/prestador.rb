@@ -10,6 +10,12 @@ module Nfse
 
       # Rio de janeiro
       attribute :cnpj, String
+      attribute :cnpj_formated, String, default: :format_cnpj
+
+      def format_cnpj
+        formated = cnpj.gsub(/(\.|\-|\/)/, "") if cnpj
+        formated
+      end
     end
   end
 end

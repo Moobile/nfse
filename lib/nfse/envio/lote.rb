@@ -10,6 +10,7 @@ module Nfse
       attribute :id, String, default: lambda { |lote,_| "#{lote.object_id}#{Time.now.to_i}" }
       attribute :cod_cidade, String
       attribute :cnpj, String
+      attribute :cnpj_formated, String, default: :format_cnpj
       attribute :razao_social, String
       attribute :transacao, String, default: 'true'
       attribute :versao, Integer, default: 1
@@ -54,6 +55,11 @@ module Nfse
 
       def default_render_rps
         rps.map(&:render).join('')
+      end
+
+      def format_cnpj
+        formated = cnpj.gsub(/(\.|\-|\/)/, "") if cnpj
+        formated
       end
 
     end
