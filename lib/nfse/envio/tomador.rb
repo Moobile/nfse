@@ -17,6 +17,7 @@ module Nfse
       attribute :cod_cidade, String
       attribute :cidade, String
       attribute :cep, String
+      attribute :cep_formated, String, default: :formatted_cep
       attribute :email, String
       attribute :ddd, String
       attribute :telefone, String
@@ -54,8 +55,13 @@ module Nfse
       end
 
       def formatted_cep
-        cep.ljust(8, '0') unless cep.nil?
+        formated = cep.gsub(/(\.|\-)/, "") if cep
+        formated
       end
+
+      # def formatted_cep
+      #   cep.ljust(8, '0') unless cep.nil?
+      # end
     end
   end
 end
