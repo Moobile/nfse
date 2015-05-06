@@ -55,7 +55,7 @@ module Nfse
       end
 
       def formatted_cep
-        formated = cep.gsub(/(\.|\-)/, "") if cep
+        formated = cep.gsub(/(\.|\-|\s)/, "") if cep
         formated
       end
 
